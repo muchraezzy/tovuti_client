@@ -1,0 +1,227 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+/* Start of File*/
+.logindiv{
+    padding: 15px;
+}
+
+.inputdivs {
+    margin-bottom: 15px;
+}
+
+.card-login{
+    border: none;
+}
+
+.gridmenu {
+    display:inline-block;
+    float:left;
+}
+
+.gridcontainer {
+    display: inline-block;
+    float: right;
+    padding-left:40px;
+}
+
+.cell {
+    flex-direction: column;
+    display: flex;
+    flex: 50%;
+    height: 100px;
+    text-align:left;
+}
+
+.data {
+    width: 100%;
+    justify-content: center;
+    flex: 1;
+    border-bottom: 1px rgba(29,226,137,1);
+    padding-left: 5px;
+}
+
+@media only screen and (max-width: 1024px) {
+    #cell1 {
+        flex-direction: row;
+        position: static;
+        height: 100px;
+        text-align:center;
+    }
+}
+
+ @media only screen and (max-width: 640px) {
+    #cell1 {
+        flex-direction: column;
+        right: 10px;
+        position: absolute;
+        width: 33%;
+        height: 100%;
+        text-align: left;
+    }
+ }
+
+.a.fill-div {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+.a.fill-div:hover {
+    cursor:pointer;
+}
+
+#cell1 ul li:hover {
+    background-image: linear-gradient( 56.1deg, rgba(29,226,137,1) 21%, rgba(50,219,244,1) 172.6% );
+    cursor: pointer;
+    font-palette:light;
+    font-weight:bold;
+    font-size:18px;
+    text-decoration:underline;
+}
+
+#cell1 ul li:hover a {
+        color: #fff;
+        
+    }
+
+#cell1 ul li .active {
+    font-palette: dark;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 1px solid;
+}
+
+.tdh {
+    height: 40px;
+    padding: .5rem;
+}
+
+input.hasAttr {
+    width:20px ;
+    height: 20px;
+}
+
+input.prodname, input.drpcategories {
+    height: 20px;
+}
+
+select.prosel1 {
+    width: 180px;
+}
+
+select.prosel {
+    width: 100%;
+}
+
+.prodlbl {
+    width: 150px;
+}
+
+.prodback {
+    display: none;
+    float: left;
+}
+
+.prodbuttons{
+    float:right;
+}
+
+.prodd {
+    width:100%;
+}
+
+.modal-backdrop.fade + .modal-backdrop.fade {
+    transition: opacity 0.40s linear 0s;
+}
+
+td.details-control {
+    background: url('../assets/plus.jpg') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('../assets/minus.jpg') no-repeat center center;
+    
+}
+/*#sub-header ul li:hover,
+body.home li.home,
+body.contact li.contact {
+    background-color: #000;
+}
+
+    #sub-header ul li:hover a,
+    body.home li.home a,
+    body.contact li.contact a {
+        color: #fff;
+    }*/
+    

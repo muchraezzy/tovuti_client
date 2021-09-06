@@ -1,0 +1,550 @@
+﻿@page
+@*@model IEnumerable<LandingModel>*@
+@model LandingModel
+@{
+    ViewData["Title"] = "Landing";
+    //var data = ViewData["data"];
+    //var grid = new System.Web.Helpers.WebGrid(Model, rowsPerPage: 5,
+    //                defaultSort: "ProductName");
+
+}
+
+<div style="display:none">
+    <input type="text" id="useridHolder" />
+    <input type="text" id="usernameHolder" />
+</div>
+
+
+
+<div class="text-center">
+    <h1 class="display-8"></h1>
+    <div class="row flex-column align-content-center">
+        <div class="col-md-12">
+            <div class="col-md-3 gridmenu">
+
+                <div class="cell1" id="cell1">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item data">
+                            <a class="nav-link text-dark fill-div active" onclick="myFunction(1)">Products</a>
+                        </li>
+                        <li class="nav-item data">
+                            <a class="nav-link text-dark fill-div" onclick="myFunction(2)">Categories</a>
+                        </li>
+                        <li class="nav-item data">
+                            <a class="nav-link text-dark fill-div" onclick="myFunction(3)">Attributes</a>
+                        </li>
+                    </ul>
+
+                    @*<span class="data">Products</span>
+                        <span class="data">Categories</span>
+                        <span class="data">Attributes</span>*@
+                </div>
+
+
+            </div>
+            <div class="col-md-9 gridcontainer">
+                <section>
+                    <div class="row">
+                        <div class="grid">
+                            <div id="prods">
+                                <div class="col-md-12">
+                                    <table id="products" class="table table-striped table-bordered dt-responsive nowrap" width="80%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Category Name</th>
+                                                <th>Product Name</th>
+                                                <th>Has Attributes</th>
+                                                <th>Created By</th>
+                                                <th>Modified By</th>
+                                                <th>cid</th>
+                                                <th>pid</th>
+                                                <th>attr_id</th>
+                                                <th>uid</th>
+                                                <th>color</th>
+                                                <th>price</th>
+                                                <th>size</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Category Name</th>
+                                                <th>Product Name</th>
+                                                <th>Has Attributes</th>
+                                                <th>Created By</th>
+                                                <th>Modified By</th>
+                                                <th>cid</th>
+                                                <th>pid</th>
+                                                <th>attr_id</th>
+                                                <th>uid</th>
+                                                <th>color</th>
+                                                <th>price</th>
+                                                <th>size</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button type="submit" id="prodAdd" class="btn btn-outline-primary btn-round btn-sm btn-block"><i class="fa fa-plus" aria-hidden="true"></i>  Add New Product</button>
+                                            </td>
+                                            <td>
+                                                <button type="submit" id="prodEdit" class="btn btn-outline-dark btn-round btn-sm btn-block" onclick="EditProduct()"><i class="fa fa-pencil" aria-hidden="true"></i>  Edit Product</button>
+                                            </td>
+                                            <td>
+                                                <button type="submit" id="prodDel" class="btn btn-outline-danger btn-round btn-sm btn-block"><i class="fa fa-trash" aria-hidden="true"></i>  Delete Product</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="cat" style="display:none;">
+                                <div class="row">
+                                    <table id="category" class="table table-striped table-bordered dt-responsive nowrap" width="80%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Category Name</th>
+                                                <th>cid</th>
+                                                <th>Created By</th>
+                                                <th>Modified By</th>
+                                                <th>edit</th>
+                                                <th>delete</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Category Name</th>
+                                                <th>cid</th>
+                                                <th>Created By</th>
+                                                <th>Modified By</th>
+                                                <th>edit</th>
+                                                <th>delete</th>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button type="submit" id="catAdd" class="btn btn-outline-primary btn-round btn-sm btn-block"><i class="fa fa-plus" aria-hidden="true"></i>  Add New Category</button>
+                                            </td>
+                                            <td>
+                                                <button type="submit" id="catEdit" class="btn btn-outline-dark btn-round btn-sm btn-block" onclick="EditCategory()"><i class="fa fa-pencil" aria-hidden="true"></i>  Edit Category</button>
+                                            </td>
+                                            <td>
+                                                <button type="submit" id="catDel" class="btn btn-outline-danger btn-round btn-sm btn-block"><i class="fa fa-trash" aria-hidden="true"></i>  Delete Category</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div id="attr" style="display:none;">
+                                <div class="row">
+                                    <table id="attribute" class="table table-striped table-bordered dt-responsive nowrap" width="80%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>pid</th>
+                                                <th>attr_id</th>
+                                                <th>Product Name</th>
+                                                <th>Color</th>
+                                                <th>Size</th>
+                                                <th>Price</th>
+                                                <th>Gender</th>
+                                                <th>Created By</th>
+                                                <th>Modified By</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>pid</th>
+                                                <th>attr_id</th>
+                                                <th>Product Name</th>
+                                                <th>Color</th>
+                                                <th>Size</th>
+                                                <th>Price</th>
+                                                <th>Gender</th>
+                                                <th>Created By</th>
+                                                <th>Modified By</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button type="submit" id="attrAdd" class="btn btn-outline-primary btn-round btn-sm btn-block"><i class="fa fa-plus" aria-hidden="true"></i>  Add New Attribute</button>
+                                            </td>
+                                            <td>
+                                                <button type="submit" id="attrEdit" class="btn btn-outline-dark btn-round btn-sm btn-block" onclick="EditAttr()"><i class="fa fa-pencil" aria-hidden="true"></i>  Edit Attribute</button>
+                                            </td>
+                                            <td>
+                                                <button type="submit" id="attrDel" class="btn btn-outline-danger btn-round btn-sm btn-block"><i class="fa fa-trash" aria-hidden="true"></i>  Delete Attribute</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+
+                            @*@grid.GetHtml(tableStyle: "webgrid",
+                                headerStyle: "header",
+                                columns: grid.Columns(
+                                          grid.Column("ProductID", "ID", canSort: true),
+                                          grid.Column(columnName: "ProductName", header: "ProductName",
+                                              format: item => Html.ActionLink((string)item.ProductName, "Details",
+                                                  "Product", new { id = item.ProductID }, null), canSort: false),
+                                          grid.Column("QuantityPerUnit", "Qty Per Unit", canSort: false),
+                                          grid.Column("UnitPrice", "Unit Price", canSort: false),
+                                          grid.Column("UnitsInStock", header: "Units In Stock",
+                                                  format: item => item.UnitsInStock, canSort: false),
+
+                                          grid.Column("ReorderLevel", "Reorder Level", canSort: false))
+                                              )*@
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---Add Product Modal -->
+<div class="modal fade" tabindex="-1" id="AddProds"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title display-8" id="lblAddProd" style="display:none">Add Product</h4>
+                <h4 class="modal-title display-8" id="lblEditProd" style="display:none">Edit Product</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table class="table dt-responsive nowrap" width="80%" cellspacing="0">
+                        <tr class="tdh">
+                            <td>
+                                <label>Category</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <select class="form-control prosel1" id="drpcategories">
+                                        <option>
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <label>Product Name</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control" type="hidden"
+                                           id="prodid" />
+                                    <input class="form-control" type="hidden"
+                                           id="atrriddd" />
+                                    <input class="form-control" type="text"
+                                           placeholder="Enter Product Name" id="prodname" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="tdh">
+                            <td>
+                                <label>Has Attributes</label>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <input class="form-control hasAttr" id="hasAttr" type="checkbox" onchange="toggleAttr()" />
+                                </div>
+
+                            </td>
+                            <td colspan="2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <div id="AttrOptions" style="display:none">
+                                    <table class="table dt-responsive nowrap">
+                                        <tr class="tdh">
+                                            <td>
+                                                <label>Color</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control prosel" id="drpcolor">
+                                                        <option value="0" selected>----Select a color---</option>
+                                                        <option value="black">Black</option>
+                                                        <option value="white">White</option>
+                                                        <option value="blue">Blue</option>
+                                                        <option value="red">Red</option>
+                                                        <option value="grey">Grey</option>
+                                                        <option value="orange">Orange</option>
+                                                        <option value="green">Green</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label>Size</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control prosel" id="drpsize">
+                                                        <option value="0" selected>----Select a size---</option>
+                                                        <option value="XXL">Extra-Extra Large (XXL)</option>
+                                                        <option value="XL">Extra Large (XL)</option>
+                                                        <option value="L">Large (L)</option>
+                                                        <option value="M">Medium (M)</option>
+                                                        <option value="S">Small (S)</option>
+                                                        <option value="XS">Extra Small (XS)</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label>Gender</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control prosel" id="drpgender">
+                                                        <option value="0" selected>----Select Gender---</option>
+                                                        <option value="M">Male</option>
+                                                        <option value="F">Female</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label>Price</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text"
+                                                           placeholder="Enter desired sale price" id="price" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row prodd">
+                    <table class="table dt-responsive nowrap">
+                        <tr>
+                            <td>
+                                <div class="col-md-12">
+                                    <div class="col-md-4 prodback" id="prodback">
+                                        @*data-toggle="modal" href="#AddCat"*@
+                                        <a class="btn btn-outline-primary btn-round btn-sm btn-block" id="btnBackCat" onclick="returntoCat(event)"> <i class="fa fa-arrow-left" aria-hidden="true"></i>  Back to Category</a>
+                                    </div>
+                                    <div class="col-md-8 prodbuttons" id="prodbuttons">
+                                        <table class="table dt-responsive nowrap">
+                                            <tr>
+                                                <td>
+                                                    <button type="submit" class="btn btn-success btn-round btn-sm btn-block" id="btnSaveProd" onclick="SaveProduct()"> <i class="fa fa-floppy-o" aria-hidden="true"></i>  Save New Product</button>
+                                                    <button type="submit" class="btn btn-success btn-round btn-sm btn-block" id="btnEditSaveProd" onclick="EditSaveProduct()"> <i class="fa fa-floppy-o" aria-hidden="true"></i>  Save Edit</button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" id="btnHideprodModal" class="btn btn-dark btn-round btn-sm btn-block">
+                                                        Cancel
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!---Add Categories Modal -->
+<div class="modal fade" tabindex="-1" id="AddCat"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title display-8"  id="lblAddCat" style="display:none">Add Category</h4>
+                <h4 class="modal-title display-8" id="lblEditCat" style="display:none">Edit Category</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table class="table dt-responsive nowrap" width="80%" cellspacing="0">
+                        <tr class="tdh">
+                            <td>
+                                <label>Category Name</label>
+                            </td>
+                            <td colspan="3">
+                                <div class="form-group">
+                                    <input class="form-control" type="hidden"
+                                           id="catid" />
+                                    <input class="form-control" type="text"
+                                           placeholder="Enter Category Name" id="catname" />
+                                </div>
+                            </td>
+
+                        </tr>
+                        <tr class="tdh">
+                            <td>
+                                @*href="#AddProds"*@
+                                <div id="prodAddDiv">
+                                    <a id="prodAddsub" class="btn btn-outline-primary btn-round btn-sm btn-block" onclick="fetchprodsModal(event)"><i class="fa fa-plus" aria-hidden="true"></i>  Add New Product</a>
+                                </div>
+                            </td>
+                            <td colspan="3">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+
+                <button type="submit" class="btn btn-success btn-round btn-sm btn-block" id="btnSaveCat" onclick="SaveCategory()"> Save</button>
+                <button type="button" id="btnHidecatModal" class="btn btn-dark btn-round btn-sm btn-block">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Add Attributes Modal -->
+<div class="modal fade" tabindex="-1" id="AddAttr"
+     data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title display-8" id="lblAddAttr" style="display:none">Add Attribute</h4>
+                <h4 class="modal-title display-8" id="lblEditAttr" style="display:none">Edit Attribute</h4>
+
+                <button type="button" class="close" data-dismiss="modal">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table class="table dt-responsive nowrap" width="80%" cellspacing="0">
+                        <tr class="tdh">
+                            <td class="prodlbl">
+                                <label>Product Name</label>
+                            </td>
+                            <td colspan="3">
+                                <div class="form-group">
+                                    <input class="form-control" type="hidden"
+                                           id="attridd" />
+
+                                    <select class="form-control prosel" id="drpprods">
+                                        <option>
+                                        </option>
+                                    </select>
+                                </div>
+                            </td>
+                            @*<td>
+                                <label>Attribute Name</label>
+                            </td>
+                            <td>
+                                <input class="form-control" type="text"
+                                       placeholder="Enter Attribute Name" id="attrname" />
+                            </td>*@
+                        </tr>
+                        <tr class="tdh">
+                            <td colspan="4">
+                                <div id="AttrOptionsMain">
+                                    <table class="table dt-responsive nowrap">
+                                        <tr class="tdh">
+                                            <td>
+                                                <label>Color</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control prosel" id="drpcolorM">
+                                                        <option value="0" selected>----Select a color---</option>
+                                                        <option value="black">Black</option>
+                                                        <option value="white">White</option>
+                                                        <option value="blue">Blue</option>
+                                                        <option value="red">Red</option>
+                                                        <option value="grey">Grey</option>
+                                                        <option value="orange">Orange</option>
+                                                        <option value="green">Green</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label>Size</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control prosel" id="drpsizeM">
+                                                        <option value="0" selected>----Select a size---</option>
+                                                        <option value="XXL">Extra-Extra Large (XXL)</option>
+                                                        <option value="XL">Extra Large (XL)</option>
+                                                        <option value="L">Large (L)</option>
+                                                        <option value="M">Medium (M)</option>
+                                                        <option value="S">Small (S)</option>
+                                                        <option value="XS">Extra Small (XS)</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label>Gender</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <select class="form-control prosel" id="drpgenderM">
+                                                        <option value="0" selected>----Select Gender---</option>
+                                                        <option value="M">Male</option>
+                                                        <option value="F">Female</option>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <label>Price</label>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input class="form-control" type="text"
+                                                           placeholder="Enter desired sale price" id="priceM" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success btn-round btn-sm btn-block" id="btnSaveAttr" onclick="SaveAttribute()">Save</button>
+                <button type="button" id="btnHideattrModal" class="btn btn-dark btn-round btn-sm btn-block">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
