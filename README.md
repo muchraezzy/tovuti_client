@@ -12,12 +12,8 @@
 Due to time allocated, I was unable to finish this module but I will be updating the repository soon with this module
 complete
 
-2. Basic CRUD Operations
 
-Edit only works for Products at the moment. For Categories and Attributes - Still in development.
-Will be updated by end of today - 07/09/2021
-
-3. Database
+2. Database
 
 The tovuti-api also requests for the local postgres database in my machine.
 This will also be updated to be dynamic so that when the application is run, it connects to any postgres local db, creates the
