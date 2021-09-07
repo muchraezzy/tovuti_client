@@ -51,3 +51,4 @@ C:\Users\Mo\source\repos\tovuti_client\obj\Debug\netcoreapp3.1\tovuti_client.csp
 C:\Users\Mo\source\repos\tovuti_client\obj\Debug\netcoreapp3.1\tovuti_client.dll
 C:\Users\Mo\source\repos\tovuti_client\obj\Debug\netcoreapp3.1\tovuti_client.pdb
 C:\Users\Mo\source\repos\tovuti_client\obj\Debug\netcoreapp3.1\tovuti_client.genruntimeconfig.cache
+C:\Users\Mo\source\repos\tovuti_client\obj\Debug\netcoreapp3.1\tovuti_client.csproj.AssemblyReference.cache

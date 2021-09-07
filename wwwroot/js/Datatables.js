@@ -312,10 +312,11 @@ function ProductsTable() {
             dataSrc: function (data) {
                 localStorage.setItem('products', JSON.stringify(data));
                 var select = document.getElementById('drpprods');
-
+                var select1 = document.getElementById('drpprods1');
                 for (index in data) {
                     console.log("iiiiiiiiiiiii!!!!!!!!!!!!!!!!!iiiiiiiiiiiiiii", index, data[index], data[index].cid, data[index].cname);
                     select.options[select.options.length] = new Option(data[index].pname, data[index].pid);
+                    select1.options[select.options.length] = new Option(data[index].pname, data[index].pid);
                 }
                 return data;
             },
@@ -561,10 +562,7 @@ function AttributesTable() {
         language: {
             "emptyTable": "There are no attributes found.",
             "zeroRecords": "There were no matching attributes found."
-        },
-        draw: "draw",
-        recordsTotal: "recordsTotal",
-        recordsFiltered: "recordsFiltered"
+        }
     });
 
 }

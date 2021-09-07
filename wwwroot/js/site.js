@@ -6,7 +6,9 @@ $("data").click(function () {
     $("a").toggleClass("nav-link text-dark fill-div active");
 });
 
-
+$('ul.outerlist>li').on(`click`, function () {
+    $(this).find('ul.innerlist').toggle();
+});
 
 $('#products tbody').on('click', 'tr', function () {
     $(this).toggleClass('selected');
@@ -261,23 +263,34 @@ function myFunction(ed) {
     var x = document.getElementById("prods");
     var y = document.getElementById("cat");
     var z = document.getElementById("attr");
+    var b = document.getElementById("bundles");
 
     if (ed === 1) {
         x.style.display = "block";
         y.style.display = "none";
         z.style.display = "none";
+        b.style.display = "none";
     } else
         if (ed === 2) {
             x.style.display = "none";
             y.style.display = "block";
             z.style.display = "none";
+            b.style.display = "none";
         } else
             if (ed === 3) {
                 x.style.display = "none";
                 y.style.display = "none";
                 z.style.display = "block";
+                b.style.display = "none";
 
-            }
+            } else
+                if (ed === 4) {
+                    x.style.display = "none";
+                    y.style.display = "none";
+                    z.style.display = "none";
+                    b.style.display = "block";
+
+                }
 }
 
 function show_alert_from_js(alert_type, text) {
@@ -377,8 +390,9 @@ function SaveProduct() {
     var createdby = document.getElementById("useridHolder").value;
     var hasattr = document.getElementById("hasAttr").value;
     var cid = document.getElementById("drpcategories").value;
+    
 
-    createdby = "admin";
+    createdby = 1;
 
     $.ajax({
         type: "POST",
@@ -391,8 +405,45 @@ function SaveProduct() {
         }, // passing the parameter
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (retValue) {
+        data: function (data) {
+            data = data;
+            return data;
+        },
+        dataSrc: function(data){ return data;},
+        success: function (data, type, full, meta) {
             // Do something with the return value from.Net method
+            console.log("XXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxXXXXXXXXXXXXXXXXXX++++++____===========", data, "_________________________------XXXXXX    ", type, "_________________________------XXXXXX(((((((((((())))))))))))))    ", full,"_________________________------XXXXXX]]]]]]]]]]]]]]]{{{{{{{{{{{{{{[[[[[[[[[[[[    ", meta);
+            var attrid = data.ResponseDetails;
+            // Save New Attribute
+
+            if (hasattr) {
+                var color = document.getElementById("drpcolor").value;
+                var size = document.getElementById("drpsize").value;
+                var gender = document.getElementById("drpgender").value;
+                var price1 = document.getElementById("price").value;
+                var action = "Save";
+                createdby1 = 1;
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Products/SaveAttribute?pid=" + attrid + "&createdby=" + createdby1 + "&color=" + color + "&size=" + size + "&gender=" + gender + "&price=" + price1 + "&paction=" + action,
+                    data: {
+                        pid: pid,
+                        createdby: createdby,
+                        color: color,
+                        size: size,
+                        gender: gender,
+                        action: action
+                    }, // passing the parameter
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (retValue) {
+                        // Do something with the return value from.Net method
+                    }
+                });
+
+            }
+
         }
     });
 
@@ -484,31 +535,7 @@ function EditSaveProduct() {
     var action = "Edit";
     createdby = "admin";
     createdby1 = 1;
-    if (hasattr)
-    {
-        var color = document.getElementById("drpcolor").value;
-        var size = document.getElementById("drpsize").value;
-        var gender = document.getElementById("drpgender").value;
-        var price1 = document.getElementById("price").value;
-        $.ajax({
-            type: "POST",
-            url: "/Products/SaveAttribute?pid=" + attrid + "&createdby=" + createdby1 + "&color=" + color + "&size=" + size + "&gender=" + gender + "&price=" + price1 + "&paction=" + action,
-            data: {
-                pid: pid,
-                createdby: createdby,
-                color: color,
-                size: size,
-                gender: gender,
-                action: action
-            }, // passing the parameter
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (retValue) {
-                // Do something with the return value from.Net method
-            }
-        });
 
-    }
 
     $.ajax({
         type: "POST",
@@ -521,8 +548,40 @@ function EditSaveProduct() {
         }, // passing the parameter
         contentType: "application/json; charset=utf-8",
         dataType: "json",
-        success: function (retValue) {
+        dataSrc: function (data) { return data; },
+        success: function (data, type, full, meta) {
             // Do something with the return value from.Net method
+
+            console.log("XXXXXXXXXXXXXXXXXxxxxxxxxxxxxxxxxxXXXXXXXXXXXXXXXXXX++++++____===========", data, "_________________________------XXXXXX    ", type, "_________________________------XXXXXX(((((((((((())))))))))))))    ", full, "_________________________------XXXXXX]]]]]]]]]]]]]]]{{{{{{{{{{{{{{[[[[[[[[[[[[    ", meta);
+            /*var attrid = attrid;*/
+            // Save Edited Attribute
+
+
+            if (hasattr) {
+                var color = document.getElementById("drpcolor").value;
+                var size = document.getElementById("drpsize").value;
+                var gender = document.getElementById("drpgender").value;
+                var price1 = document.getElementById("price").value;
+                $.ajax({
+                    type: "POST",
+                    url: "/Products/SaveAttribute?pid=" + attrid + "&createdby=" + createdby1 + "&color=" + color + "&size=" + size + "&gender=" + gender + "&price=" + price1 + "&paction=" + action,
+                    data: {
+                        pid: pid,
+                        createdby: createdby,
+                        color: color,
+                        size: size,
+                        gender: gender,
+                        action: action
+                    }, // passing the parameter
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (retValue) {
+                        // Do something with the return value from.Net method
+                    }
+                });
+
+            }
+
         }
     });
 

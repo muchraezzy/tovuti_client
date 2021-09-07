@@ -149,6 +149,14 @@ body {
     text-decoration:underline;
 }
 
+#cell1 ul li ul {
+    background-color:whitesmoke;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
 #cell1 ul li:hover a {
         color: #fff;
         
@@ -213,6 +221,15 @@ tr.shown td.details-control {
     background: url('../assets/minus.jpg') no-repeat center center;
     
 }
+
+.innerlist {
+    display: none;
+}
+
+ul li:hover ul {
+    display: block;
+}
+
 /*#sub-header ul li:hover,
 body.home li.home,
 body.contact li.contact {

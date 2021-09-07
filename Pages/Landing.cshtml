@@ -24,8 +24,19 @@
 
                 <div class="cell1" id="cell1">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item data">
-                            <a class="nav-link text-dark fill-div active" onclick="myFunction(1)">Products</a>
+                        <li class="nav-item data outerlist">
+                            <a class="nav-link text-dark fill-div active">Products</a>
+
+                            <ul class="navbar-nav flex innerlist">
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark fill-div" onclick="myFunction(1)">All Products</a>
+                                </li>
+                          
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark fill-div" onclick="myFunction(4)">Bundled Products</a>
+                                </li>
+                            </ul>
+
                         </li>
                         <li class="nav-item data">
                             <a class="nav-link text-dark fill-div" onclick="myFunction(2)">Categories</a>
@@ -33,6 +44,7 @@
                         <li class="nav-item data">
                             <a class="nav-link text-dark fill-div" onclick="myFunction(3)">Attributes</a>
                         </li>
+
                     </ul>
 
                     @*<span class="data">Products</span>
@@ -200,6 +212,37 @@
                                 </div>
                             </div>
 
+                            <div id="bundles" class="bundles" style="display:none;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4 class="display-8" id="lblAddProd" style="display:none">Add Product</h4>
+
+                                        <div class="gridBundles">
+
+                                        </div>
+
+                                        <div class="newBundle">
+                                            <div class="form-group">
+                                                <form>
+                                                    <table class="table dt-responsive nowrap" width="80%" cellspacing="0">
+                                                        <tr>
+                                                            <td>
+                                                                <label>Select Product</label>
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control prosel" id="drpprods1">
+                                                                    <option>
+                                                                    </option>
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             @*@grid.GetHtml(tableStyle: "webgrid",
                                 headerStyle: "header",
                                 columns: grid.Columns(
