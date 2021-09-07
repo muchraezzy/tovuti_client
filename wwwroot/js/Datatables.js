@@ -170,10 +170,6 @@ function EditAttrData(pid, attr_id, pname, color, price, size)
 
     var attrid = document.getElementById("attridd");
     attrid.value = attr_id;
-
-    //var attrid = document.getElementById("attridd");
-    //attrid.value = attr_id;
-
     //var attrname = document.getElementById("attrname");
     //attrname.value = "";
 
@@ -202,8 +198,13 @@ function EditCatData(cid, cname, created_by, modified_by)
     var catname = document.getElementById("catname");
     catname.value = cname;
 
+<<<<<<< HEAD
     var cidt = document.getElementById("catid");
     cidt.value = cid;
+=======
+    var cid = document.getElementById("catid");
+    cid.value = data[0].cid;
+>>>>>>> parent of 08c4004 (Add Landing Page menu)
 
     var x = document.getElementById("lblAddCat");
     var y = document.getElementById("lblEditCat");
