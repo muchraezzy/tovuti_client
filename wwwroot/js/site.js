@@ -166,8 +166,8 @@ function clearAddAttr() {
     var drpprods = document.getElementById("drpprods");
     drpprods.value = "";
 
-    var atrridd = document.getElementById("atrridd");
-    atrridd.value = "";
+    //var atrridd = document.getElementById("atrridd");
+    //atrridd.value = 0;
 
 
     //var attrname = document.getElementById("attrname");
@@ -287,7 +287,16 @@ function SaveAttribute() {
     var gender = document.getElementById("drpgenderM").value;
     var price2 = document.getElementById("priceM").value;
 
-    var action = "Save";
+    var activeLbl = document.getElementById("lblAddAttr");
+
+    if (activeLbl.style.display == "block")
+    {
+        var action = "Save";
+    } else {
+        var action = "Edit";
+        pid = document.getElementById("attridd").value;
+    }
+    
     createdby = 1;
 
     $.ajax({

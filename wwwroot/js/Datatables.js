@@ -170,6 +170,10 @@ function EditAttrData(pid, attr_id, pname, color, price, size)
 
     var attrid = document.getElementById("attridd");
     attrid.value = attr_id;
+
+    //var attrid = document.getElementById("attridd");
+    //attrid.value = attr_id;
+
     //var attrname = document.getElementById("attrname");
     //attrname.value = "";
 
@@ -199,7 +203,7 @@ function EditCatData(cid, cname, created_by, modified_by)
     catname.value = cname;
 
     var cid = document.getElementById("catid");
-    cid.value = data[0].cid;
+    cid.value = cid;
 
     var x = document.getElementById("lblAddCat");
     var y = document.getElementById("lblEditCat");
