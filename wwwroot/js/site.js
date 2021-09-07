@@ -280,6 +280,22 @@ function myFunction(ed) {
             }
 }
 
+function show_alert_from_js(alert_type, text) {
+    msg = `  <div class="toast" data-autohide="false">
+    <div class="toast-header">
+      <strong class="mr-auto text-primary">Toast Header</strong>
+      <small class="text-muted">5 mins ago</small>
+      <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+    </div>
+    <div class="toast-body">
+      Some text inside the toast body
+    </div>
+  </div>
+</div>${text}`;  // to render the text message to show.
+    msg_html = $.parseHTML(msg);
+    $('.message-container').append(msg_html);
+}
+
 function SaveAttribute() {
     var pid = document.getElementById("drpprods").value;
     var color = document.getElementById("drpcolorM").value;
@@ -314,6 +330,9 @@ function SaveAttribute() {
         dataType: "json",
         success: function (retValue) {
             // Do something with the return value from.Net method
+            $("#AddAttr").modal('hide');
+            show_alert_from_js("success", "Attribute has been succesfully saved");
+
         }
     });
 
@@ -321,11 +340,22 @@ function SaveAttribute() {
 
 function SaveCategory() {
     var cname = document.getElementById("catname").value;
+    var cidd = document.getElementById("catid");
+    var cddd = cidd.value;
     createdby = 1;
+
+    var activeLbl = document.getElementById("lblAddCat");
+
+    if (activeLbl.style.display == "block") {
+        var action = "Save";
+    } else {
+        var action = "Edit";
+        
+    }
 
     $.ajax({
         type: "POST",
-        url: "/Products/SaveCategory?cname=" + cname + "&createdby=" + createdby,
+        url: "/Products/SaveCategory?cname=" + cname + "&createdby=" + createdby + "&cid=" + cddd +"&paction="+action,
         data: {
             cname: cname,
             createdby: createdby
@@ -334,6 +364,8 @@ function SaveCategory() {
         dataType: "json",
         success: function (retValue) {
             // Do something with the return value from.Net method
+            /* show_alert_from_js("error", "You cannot create a hub with same hub name")*/
+           
         }
     });
 
@@ -516,8 +548,8 @@ function EditCategory() {
         var catname = document.getElementById("catname");
         catname.value = data[0].cname;
 
-        var cid = document.getElementById("catid");
-        cid.value = data[0].cid;
+        var cidt = document.getElementById("catid");
+        cidt.value = data[0].cid;
 
         var x = document.getElementById("lblAddCat");
         var y = document.getElementById("lblEditCat");

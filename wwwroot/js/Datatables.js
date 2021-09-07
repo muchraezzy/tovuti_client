@@ -202,8 +202,8 @@ function EditCatData(cid, cname, created_by, modified_by)
     var catname = document.getElementById("catname");
     catname.value = cname;
 
-    var cid = document.getElementById("catid");
-    cid.value = cid;
+    var cidt = document.getElementById("catid");
+    cidt.value = cid;
 
     var x = document.getElementById("lblAddCat");
     var y = document.getElementById("lblEditCat");

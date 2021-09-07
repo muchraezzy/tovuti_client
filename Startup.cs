@@ -70,7 +70,7 @@ namespace tovuti_client
                defaults: new { controller = "Products", action = "DeleteProduct" });
 
                 endpoints.MapControllerRoute(name: "SaveCat",
-                pattern: "Products/SaveCategory/{cname}/{createdby}",
+                pattern: "Products/SaveCategory/{cname}/{createdby}/{cid}/{paction}",
                 defaults: new { controller = "Products", action = "SaveCategory" });
 
                 endpoints.MapControllerRoute(name: "SaveAttr",

@@ -201,12 +201,13 @@ namespace tovuti_client.Controllers
         }
 
         [HttpPost]
-        public Response SaveCategory(string cname, string createdby)
+        public Response SaveCategory(string cname, string createdby,int cid, string paction)
         {
             try {
                 Category category = new Category();
                 category.cname = cname;
                 category.created_by = createdby;
+                category.cid = cid;
 
                 using (var client = new HttpClient())
                 {
@@ -218,9 +219,20 @@ namespace tovuti_client.Controllers
                     // HttpContent httpContent = new StringContent(product);
                     var json = JsonConvert.SerializeObject(category);
                     var data = new StringContent(json, Encoding.UTF8, "application/json");
-                    var Res = client.PostAsync(client.BaseAddress + "productCategory", data);
-                    var body = Res.Result.Content.ReadAsAsync<Response>().Result;
-                    return body;
+
+                    if (paction == "Save")
+                    {
+                        var Res = client.PostAsync(client.BaseAddress + "productCategory", data);
+                        var body = Res.Result.Content.ReadAsAsync<Response>().Result;
+                        return body;
+                    }
+                    else
+                    {
+                        var Res = client.PostAsync(client.BaseAddress + "productCategory", data);
+                        var body = Res.Result.Content.ReadAsAsync<Response>().Result;
+                        return body;
+                    }
+
                 }
 
             } catch (Exception Ex) 
