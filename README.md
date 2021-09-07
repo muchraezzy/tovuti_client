@@ -16,7 +16,7 @@ complete
 2. Database
 
 The tovuti-api also requests for the local postgres database in my machine.
-This will also be updated to be dynamic so that when the application is run, it connects to any postgres local db, creates the
+This will also be updated to be dynamic so that when the application is run, it connects to any postgres local server, creates the
 database and the required tables and probably dumps some sample data
 
 
